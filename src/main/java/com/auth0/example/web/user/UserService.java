@@ -19,7 +19,7 @@ public class UserService {
 	private final RestTemplate restTemplate = new RestTemplate();
 	
 	public List<User> getAllUsers() {
-		String url="http://localhost:3000/api/users/getAll";
+		String url="http://localhost:3000/api/users";
 		ResponseEntity<User[]> response = restTemplate.getForEntity(url, User[].class);
 		
 		User[] user = response.getBody();
@@ -37,12 +37,12 @@ public class UserService {
 	}
 	
 	public void addUser(User user) {
-		restTemplate.postForObject("http://localhost:3000/api/users/adduser", user, ResponseEntity.class);
+		restTemplate.postForObject("http://localhost:3000/api/users", user, ResponseEntity.class);
 	}
 	
 	
 	public void updateUserEmail(@RequestBody User user, @RequestParam String email ) {
-		String url = "http://localhost:3000/api/users/updateuser/{email}";
+		String url = "http://localhost:3000/api/users/users";
 //		User updatedUser = new User(user.getUid(), user.getDisplayName(), user.setEmail(email), user.getImageUrl());
 //		User user = restTemplate.put(URI_USERS_ID, updatedUser, User.class);
 		HttpEntity<User> entity = new HttpEntity<>(user);
@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	public void deleteUser(String uid) {
-		String url = "http://localhost:3000/api/users/deleteuser/{uid}";
+		String url = "http://localhost:3000/api/users/users";
 		
 		this.restTemplate.delete(url,uid);
 	}

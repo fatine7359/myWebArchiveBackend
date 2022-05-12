@@ -37,11 +37,7 @@ public class UserService {
 	}
 	
 	public void addUser(User user) {
-		List<User> newUsers = new ArrayList<>();
-		newUsers.add(user);
-		
-		restTemplate.postForObject("http://localhost:3000/api/users/adduser", newUsers, ResponseEntity.class);
-
+		restTemplate.postForObject("http://localhost:3000/api/users/adduser", user, ResponseEntity.class);
 	}
 	
 	

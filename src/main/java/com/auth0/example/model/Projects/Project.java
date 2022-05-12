@@ -12,7 +12,7 @@ import com.auth0.example.model.Users.Prof;
 public class Project {
 	private String titre;
 	private int note;
-	private List<String> motsCles = new ArrayList<String>();
+	/*private List<String> motsCles = new ArrayList<String>();
 	private List<Version> versions = new ArrayList<Version>();
 	private List<Groupe> groupes = new ArrayList<Groupe>();
 	//a discuter
@@ -35,5 +35,5 @@ public class Project {
 
 	public void addGroupe(Groupe groupe) {
 		groupes.add(groupe);
-	}
+	}*/
 }

@@ -29,7 +29,7 @@ import org.springframework.http.HttpStatus;
  *      protected.
  */
 @RestController
-@RequestMapping(path = "api/users", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 // For simplicity of this sample, allow all origins. Real applications should
 // configure CORS for their use case.
 @CrossOrigin(origins = "*")
@@ -60,7 +60,7 @@ public class UserController {
 				"All good. You can see this because you are Authenticated with a Token granted the 'read:messages' scope");
 	}
 	
-	@GetMapping(value="/getAll")
+	@GetMapping(value="/users")
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}	
@@ -70,13 +70,13 @@ public class UserController {
 		return userService.getUserById(uid);
 	}
 	
-	@PostMapping(value="/adduser")
+	@PostMapping(value="/users")
     	public void addUser(@RequestBody User user) {
         	userService.addUser(user);
     	}
 	
 	
-	@PutMapping(value="/updateuser/{email}")
+	@PutMapping(value="/users")
 	public void updateUserEmail(@RequestBody User user, @RequestParam String email ) {
 		userService.updateUserEmail(user, email);
 	}
@@ -86,15 +86,8 @@ public class UserController {
 		userService.updateUserEmail(user, imageUrl);
 	}
 	
-	@DeleteMapping(value="/deleteuser/{uid}")
+	@DeleteMapping(value="/users")
 	public void deleteUser(@RequestBody String uid) {
 		userService.deleteUser(uid);
 	}
-	
-	
-	
-	
-	
-	
-	
 }

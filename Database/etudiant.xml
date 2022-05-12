@@ -1,0 +1,6 @@
+<etudiant>
+    <nom></nom>
+    <prenom></prenom>
+    <niveau_etude></niveau_etude>
+    <dept></dept>
+</etudiant>

@@ -1,0 +1,11 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="version">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="numero"/>
+        <xs:element type="xs:string" name="commentaire"/>
+        <xs:element type="xs:string" name="contenu"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

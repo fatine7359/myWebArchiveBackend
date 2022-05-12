@@ -1,0 +1,20 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="prof">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element type="xs:string" name="nom"/>
+        <xs:element type="xs:string" name="prenom"/>
+        <xs:element type="xs:string" name="dept"/>
+        <xs:element name="email">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="type"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

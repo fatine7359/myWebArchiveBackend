@@ -44,41 +44,36 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/public")
-	public @ResponseBody Message publicEndpoint() {
+	public Message publicEndpoint() {
 		return new Message("All good. You DO NOT need to be authenticated to call /api/public.");
 	}
 
 	@GetMapping(value = "/private")
-	public @ResponseBody Message privateEndpoint(@RequestHeader("Authorization") String authHeader) {
+	publicy Message privateEndpoint(@RequestHeader("Authorization") String authHeader) {
 		String user = this.utils.getUser(authHeader);
 		return new Message("All good. You can see this because you are Authenticated. " + user);
 	}
 
 	@GetMapping(value = "/private-scoped")
-	public @ResponseBody Message privateScopedEndpoint() {
+	public Message privateScopedEndpoint() {
 		return new Message(
 				"All good. You can see this because you are Authenticated with a Token granted the 'read:messages' scope");
 	}
 	
 	@GetMapping(value="/getAll")
-	public @ResponseBody List<User> getAllUsers() {
+	public List<User> getAllUsers() {
 		return userService.getAllUsers();
-	}
-	
-	
-	/*application/json*/
-	
+	}	
 	
 	@GetMapping(value="/getuser/{uid}")
-	public @ResponseBody User[] getUserById(@RequestParam String uid) {
+	public User[] getUserById(@RequestParam String uid) {
 		return userService.getUserById(uid);
 	}
 	
 	@PostMapping(value="/adduser")
-    @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody void addUser(@RequestBody User user) {
-        userService.addUser(user);
-    }
+    	public void addUser(@RequestBody User user) {
+        	userService.addUser(user);
+    	}
 	
 	
 	@PutMapping(value="/updateuser/{email}")
@@ -92,7 +87,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping(value="/deleteuser/{uid}")
-	public @ResponseBody void deleteUser(@RequestBody String uid) {
+	public void deleteUser(@RequestBody String uid) {
 		userService.deleteUser(uid);
 	}
 	

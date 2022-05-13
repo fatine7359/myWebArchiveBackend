@@ -41,7 +41,7 @@ public class UserService {
 	}
 	
 	
-	public void updateUserEmail(@RequestBody User user, @RequestParam String email ) {
+	public void updateUserEmail(@RequestBody User user) {
 		String url = "http://localhost:3000/api/users";
 //		User updatedUser = new User(user.getUid(), user.getDisplayName(), user.setEmail(email), user.getImageUrl());
 //		User user = restTemplate.put(URI_USERS_ID, updatedUser, User.class);

@@ -42,7 +42,7 @@ public class UserService {
 	
 	
 	public void updateUserEmail(@RequestBody User user, @RequestParam String email ) {
-		String url = "http://localhost:3000/api/users/users";
+		String url = "http://localhost:3000/api/users";
 //		User updatedUser = new User(user.getUid(), user.getDisplayName(), user.setEmail(email), user.getImageUrl());
 //		User user = restTemplate.put(URI_USERS_ID, updatedUser, User.class);
 		HttpEntity<User> entity = new HttpEntity<>(user);
@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	public void deleteUser(String uid) {
-		String url = "http://localhost:3000/api/users/users";
+		String url = "http://localhost:3000/api/users";
 		
 		this.restTemplate.delete(url,uid);
 	}

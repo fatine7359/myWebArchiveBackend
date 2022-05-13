@@ -1,10 +1,5 @@
 package com.auth0.example.model.Users;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import com.auth0.example.model.Reclamation;
 import com.auth0.example.model.Enums.PermissionLevel;
 
 public class User {
@@ -12,14 +7,13 @@ public class User {
 	private String email;
 	private String displayName;
 	private String imageUrl;
-	private final List<Reclamation> reclamations = new ArrayList<Reclamation>(); // ommited by lombok
+	//private final List<Reclamation> reclamations = new ArrayList<Reclamation>(); // ommited by lombok
 
-	public User(String uid, String email, String displayName, String imageUrl, Collection<Reclamation> reclamations) {
+	public User(String uid, String email, String displayName, String imageUrl) {
 		setUid(uid);
 		setEmail(email);
 		setDisplayName(displayName);
 		setImageUrl(imageUrl);
-		addReclamations(reclamations);
 	}
 
 	public String getUid() {
@@ -56,9 +50,6 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
-	public List<Reclamation> getReclamations() {
-		return reclamations;
-	}
 
 	public static PermissionLevel getDBPermissionLevel(String uid) {
 		return null;
@@ -68,8 +59,4 @@ public class User {
 		return null;
 	}
 
-	// TODO: needs to affect db
-	public void addReclamations(Collection<Reclamation> r) {
-		r.stream().forEach(reclamations::add);
-	}
 }

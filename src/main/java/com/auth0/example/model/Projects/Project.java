@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Project {
 	private String titre;
 	private int note;
-<<<<<<< HEAD
+
 	/*private List<String> motsCles = new ArrayList<String>();
 =======
 	public Project(String titre, int note) {
@@ -51,10 +51,8 @@ public class Project {
 		groupes.add(groupe);
 <<<<<<< HEAD
 	}*/
-=======
-	}
 
-	public String getTitre() {
+	/*public String getTitre() {
 		return titre;
 	}
 
@@ -116,6 +114,6 @@ public class Project {
 
 	public void setProjectType(TypeProjet projectType) {
 		this.projectType = projectType;
-	}
->>>>>>> e71d80f7e4f351f0e236b22560531a8eb00ea008
+	}*/
+
 }

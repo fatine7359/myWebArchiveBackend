@@ -46,7 +46,7 @@ public class UserService {
 //		User updatedUser = new User(user.getUid(), user.getDisplayName(), user.setEmail(email), user.getImageUrl());
 //		User user = restTemplate.put(URI_USERS_ID, updatedUser, User.class);
 		HttpEntity<User> entity = new HttpEntity<>(user);
-		this.restTemplate.put(url, entity, email);
+		this.restTemplate.put(url, entity);
 	}
 	
 	public void updateUserImage(@RequestBody User user, @RequestParam String imageUrl ) {

@@ -2,7 +2,7 @@ package com.auth0.example.web;
 
 import com.auth0.example.model.Message;
 
-import com.auth0.example.web.user.UserService;
+import com.auth0.example.web.user.UserService1;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +26,9 @@ import com.auth0.example.security.Utils;
 public class APIController {
 
     private Utils utils;
-    private UserService userService;
+    private UserService1 userService;
 
-    public APIController(Utils utils, UserService userService) {
+    public APIController(Utils utils, UserService1 userService) {
         this.utils = utils;
         this.userService = userService;
     }

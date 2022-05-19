@@ -1,13 +1,19 @@
 package com.auth0.example.model.Users;
 
 import com.auth0.example.model.Enums.PermissionLevel;
+import lombok.NoArgsConstructor;
 
-public class User {
+import java.io.Serializable;
+
+@NoArgsConstructor
+public class User implements Serializable {
 	private String uid;
 	private String email;
 	private String displayName;
 	private String imageUrl;
 	//private final List<Reclamation> reclamations = new ArrayList<Reclamation>(); // ommited by lombok
+
+
 
 	public User(String uid, String email, String displayName, String imageUrl) {
 		setUid(uid);

@@ -11,10 +11,9 @@ public class User {
 	private String mle;
 	private String type;
 	private String niveauetudes;
-	private String email;
 	
 	public User(String uid, String displayName, String imageUrl, String mle, String type,
-			String niveauetudes, String email) {
+			String niveauetudes) {
 		super();
 		this.uid = uid;
 		this.displayName = displayName;
@@ -22,7 +21,7 @@ public class User {
 		this.mle = mle;
 		this.type = type;
 		this.niveauetudes = niveauetudes;
-		this.email = email;
+
 	}
 
 	public String getMle() {
@@ -84,11 +83,5 @@ public class User {
 		return null;
 	}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
 }

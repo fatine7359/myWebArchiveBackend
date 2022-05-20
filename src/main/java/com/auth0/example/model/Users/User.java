@@ -1,7 +1,9 @@
 package com.auth0.example.model.Users;
 
 import com.auth0.example.model.Enums.PermissionLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class User {
 	private String uid;
 	private String displayName;
@@ -9,9 +11,10 @@ public class User {
 	private String mle;
 	private String type;
 	private String niveauetudes;
+	private String email;
 	
 	public User(String uid, String displayName, String imageUrl, String mle, String type,
-			String niveauetudes) {
+			String niveauetudes, String email) {
 		super();
 		this.uid = uid;
 		this.displayName = displayName;
@@ -19,6 +22,7 @@ public class User {
 		this.mle = mle;
 		this.type = type;
 		this.niveauetudes = niveauetudes;
+		this.email = email;
 	}
 
 	public String getMle() {
@@ -78,5 +82,13 @@ public class User {
 
 	public static Boolean getDBIsTeacher(String uid) {
 		return null;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

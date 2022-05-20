@@ -4,23 +4,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.auth0.example.model.Users.User;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class UserService {
+public class UserService{
 	
-	private final RestTemplate restTemplate = new RestTemplate();
+	private final RestTemplate restTemplate;
 	private final Path root = Paths.get("uploads");
-	
+
+
+	public UserService(RestTemplateBuilder restTemplateBuilder) {
+		this.restTemplate = restTemplateBuilder.build();
+	}
+
+
 	public List<User> getAllUsers() {
-		String url="http://localhost:3010/api/users/getAll";
+		String url="http://localhost:3000/api/users/getAll";
 		ResponseEntity<User[]> response = restTemplate.getForEntity(url, User[].class);
 		
 		User[] user = response.getBody();
@@ -29,7 +40,7 @@ public class UserService {
 	}
 	
 	public User[] getUserById(String authHeader, String uid) {
-		String url="http://localhost:3010/api/users/getuser/{uid}";
+		String url="http://localhost:3000/api/users/getuser/{uid}";
 		ResponseEntity<User[]> response = restTemplate.getForEntity(url, User[].class, uid);
 		
 		User[] user = response.getBody();
@@ -38,23 +49,33 @@ public class UserService {
 	}
 	
 	public void addUser(User user) {
-		restTemplate.postForObject("http://localhost:3010/api/users/adduser", user, ResponseEntity.class);
+
+		// send POST request
+		ResponseEntity<User> response = this.restTemplate.postForEntity("http://localhost:3000/api/users/adduser", user, User.class);
+
+		//restTemplate.postForObject("http://localhost:3000/api/users/adduser", user, ResponseEntity.class);
 	}
 	
 	public void deleteUser(String uid) {
-		String url = "http://localhost:3010/api/users/deleteuser/{uid}";
-		
+		String url = "http://localhost:3000/api/users/deleteuser";
 		this.restTemplate.delete(url,uid);
 	}
 	
 	//delete and add
-	public void updateUser(User user) {
+	public void updateUser(User user, String uid) {
 		//String url = "http://localhost:3000/api/users/updateuser/{id}";
 //		User updatedUser = new User(user.getUid(), user.getDisplayName(), user.setEmail(email), user.getImageUrl());
 //		User user = restTemplate.put(URI_USERS_ID, updatedUser, User.class);
 //		HttpEntity<User> entity = new HttpEntity<>(user);
-		deleteUser(user.getUid());
-		addUser(user);
+
+		// create headers
+		HttpHeaders headers = new HttpHeaders();
+		// set `content-type` header
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		// set `accept` header
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		String url = "http://localhost:3000/api/users/updateuser";
+		this.restTemplate.put(url, user, uid);
 	}
 	
 	//import excel file and do postall

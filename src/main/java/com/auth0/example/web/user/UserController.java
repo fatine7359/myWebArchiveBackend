@@ -4,18 +4,7 @@ import com.auth0.example.model.Message;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.auth0.example.security.Utils;
@@ -72,22 +61,29 @@ public class UserController {
 		return userService.getUserById(authHeader, uid);
 	}
 	
-	//nom complet, email, type(professeur ) ou promo(si étudiant)
-	//modified à revoir
+	//nom complet, email, type(professeur ) ou promo(si ï¿½tudiant)
+	//modified  revoir
 	//boujida yzid mle
-	@PostMapping(value="/adduser")
+	@PostMapping(value="/adduser", consumes = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody void addUser(@RequestParam String displayName, @RequestParam String email, @RequestParam String type, @RequestParam String mle, @RequestParam String niveauetudes) {
-        User user = new User(null, displayName, null, mle, type, niveauetudes);
+    public @ResponseBody void addUser(@RequestBody User user) {
+		//@RequestParam String displayName, @RequestParam String email, @RequestParam String type, @RequestParam String mle, @RequestParam String niveauetudes
+        //User user = new User(null, displayName, null, mle, type, niveauetudes);
 		userService.addUser(user);
     }
+
+	@PutMapping(value = "/updateuser/{uid}")
+	public void updateUser(@RequestBody User user, @PathVariable String uid){
+		userService.updateUser(user, uid);
+	}
 	
 	//@requestheader string user
 	//this.util.get
 	//changed successfully
-	@PutMapping(value="/updateuser/{id}")
-	public void updateUserEmail(@RequestBody User user) {
-		userService.updateUser(user);
+	@PutMapping(value="/updateuser/{uid}/email", consumes = {"application/json"})
+	public void updateUserEmail(@RequestBody User user, @PathVariable String uid) {
+
+		userService.updateUser(user, uid);
 	}
 	
 //	@PutMapping(value="/updateuser/{imageUrl}")
@@ -95,11 +91,12 @@ public class UserController {
 //		userService.updateUserEmail(user, imageUrl);
 //	}
 	
-	//vérifier si l'utilisateur existe déjà chez nous
+	//vï¿½rifier si l'utilisateur existe dï¿½jï¿½ chez nous
 	
 	//delete plusieurs id
 	@DeleteMapping(value="/deleteuser/{uid}")
-	public @ResponseBody void deleteUser(@RequestBody String uid) {
+	public @ResponseBody void deleteUser(@PathVariable String uid) {
+
 		userService.deleteUser(uid);
 	}
 	

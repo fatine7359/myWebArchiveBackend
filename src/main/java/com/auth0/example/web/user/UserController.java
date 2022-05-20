@@ -76,6 +76,12 @@ public class UserController {
 	public void updateUser(@RequestBody User user, @PathVariable String uid){
 		userService.updateUser(user, uid);
 	}
+
+	@PostMapping(value="/addMultipleUsers")
+	@ResponseStatus(HttpStatus.CREATED)
+	public @ResponseBody void addMultipleUsers(@RequestBody List<User> users) {
+		userService.addMultipleUsers(users);
+	}
 	
 	//@requestheader string user
 	//this.util.get

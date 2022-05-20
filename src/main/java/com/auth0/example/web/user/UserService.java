@@ -86,4 +86,11 @@ public class UserService{
             throw new RuntimeException("Could not store the file. Error :" + e.getMessage());
         }
     }
+
+	public void addMultipleUsers(List<User> users) {
+		//String url = "http://localhost:3010/api/users/addMultipleUsers";
+		for(int i=0; i<users.size();i++) {
+			addUser(users.get(i));
+		}
+	}
 }
